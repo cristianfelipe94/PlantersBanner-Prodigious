@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Banner-Felipe's Lunchables</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="ad.size" content="width=300,height=250">
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+            * { margin:0;padding:0;box-sizing:border-box;}
+            div {position:absolute;background-repeat:no-repeat !important;}
+            #loader{width:100%;height:100%;}
+
+            .first-cherry-position {top: 52%;}
+        </style>
+
+        <script type="text/javascript"> const clickTag=""; </script>
+	</head>
+    <body>
+        <div id="loader"></div>
+        <div class="banner bannerSize" style="display: none" id="js-lunchable-bucket">
+            <div class="background-lunchables-position"></div>
+            <div class="shinning-opacity"></div>
+            <!-- First Scene
+            <div class="juice-details-position"></div>
+            <div class="main-title-position"></div>
+            <div class="main-title-shade-position"></div>
+            -->
+
+            
+            <div class="deer-body-position"></div>
+            <div class="deer-head-position"></div>
+            <div class="productbox-felt-position"></div>
+            <div class="border-line-width"></div>
+            
+
+            <!-- Last Scene
+            <div class="productbox-felt-position"></div>
+
+            <div class="wrapper-front-position"></div>
+            <div class="wrapper-background-position"></div>
+            <div class="charact-appear-position"></div>
+            <div class="wrapper-back-position"></div>
+            <div class="shine-back-position"></div>
+
+            <div class="final-productshot-position"></div>
+            <div class="catchphrase-text-position"></div>
+            <div class="catchphrase-shade-position"></div>
+            -->    
+            <div id="btnExit" class="bannerSize"></div>
+        </div>
+        <script src="TweenMax.min.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript">
+            const _btnExit = document.getElementById('btnExit');
+            _btnExit.addEventListener('click', clickTagHandler)
+            function clickTagHandler(){ window.open(window.clickTag);}
+        </script>
+	</body>
+</html>
