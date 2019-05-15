@@ -125,45 +125,27 @@
 }*/
 
 .deer-head-position {
-  background: url('headAlone copy.png');
+  background: url('headAlone.png');
   height: 110px;
   width: 90px;
   position: absolute;
   top: 38px;
   left: 92px;
   transform: rotate(1deg);
-  animation: movingHead 0.8s infinite;
   z-index: 2;
 }
 
-/*@keyframes movingHead {
-  0% {
-    top: 38px;
-    left: 92px;
-    transform: rotate(1deg);
-  }
-  50% {
-    top: 40px;
-    left: 76px;
-    transform: rotate(-21deg);
-  }
-  100% {
-    top: 38px;
-    left: 92px;
-    transform: rotate(1deg);
-  }
-}*/
-
-.productbox-falling-position {
+/*.productbox-falling-position {
   background: url('productBox.png');
   height: 160px;
   width: 209px;
   position: absolute;
   top: -195px;
+  bottom: 0;
   left: 15px;
   transform: rotate(4deg);
   z-index: 4;
-}
+}*/
 
 .productbox-felt-position {
   background: url('productBox.png');
@@ -206,17 +188,18 @@
   height: 180px;
   width: 142px;
   position: absolute;
-  z-index: 3;
+  z-index: 6;
+  bottom: 70px;
 }
 
 .wrapper-front-position {
   background: url('wrapp1.png');
   height: 22px;
-  width: 142px;
+  width: 114px;
   top: 165px;
   left: 21px;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
 
 }
 
@@ -227,7 +210,7 @@
   top: 142px;
   left: 21px;
   position: absolute;
-  z-index: 1;
+  z-index: 5;
 }
 
 .wrapper-background-position {
@@ -237,7 +220,7 @@
   top: 143px;
   left: 34px;
   position: absolute;
-  z-index: 0;
+  z-index: 4;
 }
 
 .shine-back-position {
@@ -256,6 +239,7 @@
   top: 128px;
   left: 150px;
   position: absolute;
+  z-index: 6;
 }
 
 .catchphrase-text-position {
@@ -266,6 +250,7 @@
   left: 164px;
   position: absolute;
   z-index: 6;
+  opacity: 1;
 }
 
 .catchphrase-shade-position {

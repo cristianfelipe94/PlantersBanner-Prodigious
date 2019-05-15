@@ -4,13 +4,10 @@ const _imageArray = new Array(
     'aloneShine.png',
     'blackground.png',
     'bodylessCharacter.png',
-    'catchPhrase.png',
     'finalProduct.png',
-    'headlessCharacter.png',
     'orangeGradient.png',
     'orangeground.png',
     'orangeLine.png',
-    'pokeCharacter.png',
     'popCharacter.png',
     'productBox.png',
     'productShot.png',
@@ -18,10 +15,14 @@ const _imageArray = new Array(
     'shadenessTitle.png',
     'shadePhrase.png',
     'shadePoke.png',
-    'shadeProductBox.png',
-    'shadeProductBox.png',
-    'shadeTitle.png',
 );
+
+// Rect Values (0px: Top Value, 0px: Right Value, 0px: Bottom Value, 0px: Left Value).
+// Arrays with starting values and ending values for transitions.
+const headGone = ['rect(0px, 90px, 110px, -90px)', 'rect(110px, 90px, 110px, -90px)'];
+const bodyGone = ['rect(0px, 129px, 240px, -129px)', 'rect(129px, 129px, 240px, -129px)'];
+const appearCharact = ['rect(0px, 142px, 0px, -142px)','rect(0px, 142px, 180px, -142px)'];
+const frontWrap = ['rect(0px, 114px, 0px, -114px)','rect(0px, 114px, 221px, -114px)'];
 
 this.addEventListener('DOMContentLoaded', preloadImages);
 
@@ -47,46 +48,75 @@ function init(){
     initAnimations();
 }
 
-// Rect Values (0px: X Value, 0px: Y Value, 0px: H Value, 0px: W Value).
-// Arrays with starting values and ending values for transitions.
-const hitLineAnimOne = ['rect(0px, 0px, 28px, 0px)', 'rect(0px, 90px, 28px, 0px)' ];
-const arrowAnimOne = ['rect(0px, 125px, 0px, 125px)', 'rect(0px, 126px, 29px, 0px)' ];
-
-const hitLineAnimTwo = ['rect(0px, 0px, 28px, 0px)', 'rect(0px, 65px, 28px, 0px)' ];
-const arrowAnimTwo = ['rect(46px, 0px, 0px, 0px)', 'rect(0px, 23px, 92px, 0px)' ];
-
-const hitLineAnimThree = ['rect(0px, 0px, 24px, 0px)', 'rect(0px, 112px, 24px, 0px)' ];
-
-
 function initAnimations(){
     const _tlShowing = new TimelineMax();
     _tlShowing
     .set('.banner',{display: 'block'})
-    .to('.background-cheesecake-scale', 0.9,{ease: Circ.easeOut, scale: ('1')})
-    .from('.blue-block-position', 0.9, {ease: Back.easeOut.config(1.2), bottom: ('-103')})
-    .from(['.blue-cta-opacity','.first-text-opacity'], 0.9, {opacity: ('0')})
 
-    .set('.first-hit-magicappear', {clip: hitLineAnimOne[0]})
-    .to('.first-hit-magicappear', 1,{clip: hitLineAnimOne[1], ease: Power0.easeNone, opacity: ('1')})
-    .set('.first-arrow-magicappear', {clip: arrowAnimOne[0]})
-    .to('.first-arrow-magicappear', 1,{clip: arrowAnimOne[1], ease: Power0.easeNone, opacity: ('1')})
+    .addLabel('showingDeer')
+    .to('.charact-appear-position', 0.5, {clip: appearCharact[0]})
+    .to('.wrapper-front-position', 0.5, {clip: frontWrap[0]})
 
-    .set('.second-hit-magicappear', {clip: hitLineAnimTwo[0]})
-    .to('.second-hit-magicappear', 1,{clip: hitLineAnimTwo[1], ease: Power0.easeNone, opacity: ('1')})
-    .set('.second-arrow-magicappear', {clip: arrowAnimTwo[0]})
-    .to('.second-arrow-magicappear', 1,{clip: arrowAnimTwo[1], ease: Power0.easeNone, opacity: ('1'), onComplete: afterDelayAnimations})
-}
-
-function afterDelayAnimations() {
-    const _clearAnimation = new TimelineMax();
-    _clearAnimation
-    .to(['.first-hit-magicappear','.first-arrow-magicappear','.second-hit-magicappear','.second-arrow-magicappear'], 1,{ease: Power0.easeNone, opacity: ('0')}).delay(1)
+    .to('.charact-appear-position', 0.5, {clip: appearCharact[1]},'showingDeer')
+    .to('.wrapper-front-position', 2, {clip: frontWrap[1]},'showingDeer')
     
-    .to('.first-text-opacity', 0.9, {ease: Power3.easeOut, bottom: ('64')})
-    .to('.second-text-opacity', 0.9, {ease: Power3.easeOut, opacity: ('1')})
-    
-    .set('.third-text-magicappear', {clip: hitLineAnimThree[0]})
-    .to('.third-text-magicappear', 1,{clip: hitLineAnimThree[1], ease: Power0.easeNone, opacity: ('1'), onComplete :actionsButton});
+    .from('.wrapper-background-position', 1, {})
+    .from('.wrapper-back-position', 1, {})
+    // Title and show animation in and out.
+    // /////////
+    .from(['.main-title-position','.main-title-shade-position'], 1,{ top: ('-500')})
+    .to(['.main-title-position','.main-title-shade-position','.juice-details-position'], 2,{ top: ('-500'), opacity: ('0')})
+    // /////////
+
+    // Border and Deer animation in.
+    // //////////
+    .from(['.border-line-width', '.deer-body-position', '.deer-head-position'], 0.5, { top: ('300')})
+    // //////////
+
+    // Deer moving Head animation.
+    // ///////////
+    .to('.deer-head-position', 1, {top: ('40'), left: ('76'), rotation: ('-21deg')}).delay(0.5)
+    .to('.deer-head-position', 1, {top: ('38'), left: ('92'), rotation: ('1deg'),}).delay(0.5)
+    // ///////////
+
+    // Deer moving Head and Body animation.
+    // ///////////
+    .addLabel('movingWith')
+    .to('.deer-body-position', 1, {top: ('126'), left: ('95'), rotation:('-4deg')}, 'movingWith')
+    .to('.deer-head-position', 1, {top: ('40'), left: ('74'), rotation: ('-21deg'),}, 'movingWith')
+    // ///////////
+
+    // Falling product animation
+    // ///////////////
+    .addLabel('smashingTo', '+=0.5')
+    .from('.productbox-felt-position', 1,{
+        ease: Bounce.easeOut,
+        top: ('-1000'),
+        height: ('160'),
+        width: ('209'),
+        top: ('-195'),
+        bottom: ('0'),
+        left: ('15'),
+        rotation: ('4'),
+        zIndex: ('4')      
+    }, 'smashingTo')
+    // ///////////////
+
+    // Smashing Head and Body animation.
+    // /////////////
+    .set('.deer-head-position', {clip: headGone[0]}, 'smashingTo')
+    .to('.deer-head-position', 0.2, {clip: headGone[1], opacity: ('0')}, 'smashingTo')
+    .set('.deer-body-position', {clip: bodyGone[0]}, 'smashingTo')
+    .to('.deer-body-position', 0.2, {clip: bodyGone[1], opacity: ('0')}, 'smashingTo')
+    // /////////////
+
+    // Catchphrase appear animation.
+    // ///////////
+    .from('.catchphrase-text-position', 0.5, {opacity: ('0')}, 'smashingTo')
+    .from('.catchphrase-shade-position', 0.5, {opacity: ('0')}, 'smashingTo')
+    // ///////////
+
+    .from('.final-productshot-position', 0.5, {left: ('350')})
 }
 
 function actionsButton(){
