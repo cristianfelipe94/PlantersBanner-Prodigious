@@ -190,6 +190,7 @@
   position: absolute;
   z-index: 6;
   bottom: 70px;
+  opacity: 0;
 }
 
 .wrapper-front-position {
@@ -200,7 +201,7 @@
   left: 21px;
   position: absolute;
   z-index: 5;
-
+  opacity: 0;
 }
 
 .wrapper-back-position {
@@ -211,6 +212,7 @@
   left: 21px;
   position: absolute;
   z-index: 5;
+  opacity: 0;
 }
 
 .wrapper-background-position {
@@ -221,6 +223,7 @@
   left: 34px;
   position: absolute;
   z-index: 4;
+  opacity: 0;
 }
 
 .shine-back-position {

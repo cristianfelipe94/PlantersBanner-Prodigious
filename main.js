@@ -21,8 +21,11 @@ const _imageArray = new Array(
 // Arrays with starting values and ending values for transitions.
 const headGone = ['rect(0px, 90px, 110px, -90px)', 'rect(110px, 90px, 110px, -90px)'];
 const bodyGone = ['rect(0px, 129px, 240px, -129px)', 'rect(129px, 129px, 240px, -129px)'];
+
 const appearCharact = ['rect(0px, 142px, 0px, -142px)','rect(0px, 142px, 180px, -142px)'];
 const frontWrap = ['rect(0px, 114px, 0px, -114px)','rect(0px, 114px, 221px, -114px)'];
+const backWrap = ['rect(-30px, 114px, 0px, -114px)','rect(0px, 114px, 30px, -114px)'];
+const insideWrap = ['rect(-38px, 85px, 0px, -85px)','rect(0px, 85px, 38px, -85px)'];
 
 this.addEventListener('DOMContentLoaded', preloadImages);
 
@@ -45,7 +48,7 @@ function init(){
     css.setAttribute( 'type', 'text/css' );
     css.setAttribute( 'href', "style.css" );
     document.getElementsByTagName('head')[0].appendChild(css);
-    initAnimations();
+    css.addEventListener('load', initAnimations);
 }
 
 function initAnimations(){
@@ -53,15 +56,6 @@ function initAnimations(){
     _tlShowing
     .set('.banner',{display: 'block'})
 
-    .addLabel('showingDeer')
-    .to('.charact-appear-position', 0.5, {clip: appearCharact[0]})
-    .to('.wrapper-front-position', 0.5, {clip: frontWrap[0]})
-
-    .to('.charact-appear-position', 0.5, {clip: appearCharact[1]},'showingDeer')
-    .to('.wrapper-front-position', 2, {clip: frontWrap[1]},'showingDeer')
-    
-    .from('.wrapper-background-position', 1, {})
-    .from('.wrapper-back-position', 1, {})
     // Title and show animation in and out.
     // /////////
     .from(['.main-title-position','.main-title-shade-position'], 1,{ top: ('-500')})
@@ -88,7 +82,7 @@ function initAnimations(){
 
     // Falling product animation
     // ///////////////
-    .addLabel('smashingTo', '+=0.5')
+    .addLabel('smashingTo')
     .from('.productbox-felt-position', 1,{
         ease: Bounce.easeOut,
         top: ('-1000'),
@@ -99,16 +93,34 @@ function initAnimations(){
         left: ('15'),
         rotation: ('4'),
         zIndex: ('4')      
-    }, 'smashingTo')
+    })
     // ///////////////
 
     // Smashing Head and Body animation.
     // /////////////
     .set('.deer-head-position', {clip: headGone[0]}, 'smashingTo')
-    .to('.deer-head-position', 0.2, {clip: headGone[1], opacity: ('0')}, 'smashingTo')
+    .to('.deer-head-position', 0.1, {clip: headGone[1], opacity: ('0')}, 'smashingTo')
     .set('.deer-body-position', {clip: bodyGone[0]}, 'smashingTo')
-    .to('.deer-body-position', 0.2, {clip: bodyGone[1], opacity: ('0')}, 'smashingTo')
+    .to('.deer-body-position', 0.1, {clip: bodyGone[1], opacity: ('0')}, 'smashingTo')
     // /////////////
+
+    // Character jumping from product.
+    // /////////////////
+    .addLabel('showingDeer')
+    .to('.charact-appear-position', 0.5, {clip: appearCharact[0]},'showingDeer')
+    .to('.charact-appear-position', 0.5, {clip: appearCharact[1], opacity: ('1')},'showingDeer')
+
+    .to('.wrapper-front-position', 0.5, {clip: frontWrap[0]},'showingDeer')
+    .to('.wrapper-front-position', 0.5, {clip: frontWrap[1], opacity: ('1')},'showingDeer')
+
+    .to('.wrapper-back-position', 0.5, {clip: backWrap[0]},'showingDeer')
+    .to('.wrapper-back-position', 0.5, {clip: backWrap[1], opacity: ('1')},'showingDeer')
+
+    .to('.wrapper-background-position', 0.5, {clip: insideWrap[0]},'showingDeer')
+    .to('.wrapper-background-position', 0.5, {clip: insideWrap[1], opacity: ('1')},'showingDeer')
+
+    .from('.charact-appear-position', 0.5, {ease: Back.easeOut.config(1), top: ('200')},'showingDeer')
+    // /////////////////
 
     // Catchphrase appear animation.
     // ///////////
