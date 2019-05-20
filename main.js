@@ -6,14 +6,16 @@ const _imageArray = new Array(
     'bodylessCharacter.png',
     'finalProduct.png',
     'orangeGradient.png',
+    'orangeBanner.png',
     'orangeground.png',
+    'catchPhraseShadow.png',
+    'catchPhraseLess.png',
     'orangeLine.png',
     'popCharacter.png',
     'productBox.png',
     'productShot.png',
     'shadelessTitle.png',
     'shadenessTitle.png',
-    'shadePhrase.png',
     'shadePoke.png',
 );
 
@@ -61,12 +63,16 @@ function initAnimations(){
     // Title and show animation in and out.
     // /////////
     .from(['.main-title-position','.main-title-shade-position'], 1,{ top: ('-500')})
-    .to(['.main-title-position','.main-title-shade-position','.juice-details-position'], 2,{ top: ('-500'), opacity: ('0')})
+    .addLabel('bezierMovement')
+    .to('.main-title-position', 2, {bezier:{curviness:2, values:[{x:('-5'), y:('-2')}, {x:('-5'), y:('10')}, {x:('0'), y:('-10')}, {x:('5'), y:('5')}]}, ease:Power1.easeInOut, yoyo: true, repeat: 1}, 'bezierMovement')
+    .to('.main-title-shade-position', 2, {bezier:{curviness:2, values:[{x:('5'), y:('2')}, {x:('5'), y:('-10')}, {x:('0'), y:('10')}, {x:('-5'), y:('-5')}]}, ease:Power1.easeInOut, yoyo: true, repeat: 1}, 'bezierMovement')
+    .to(['.main-title-position','.main-title-shade-position', '.juice-shadow-position', '.juice-details-position'], 2,{ top: ('-150'), opacity: ('0')})
     // /////////
 
     // Border and Deer animation in.
     // //////////
-    .from(['.border-line-width', '.deer-body-position', '.deer-head-position'], 0.5, { top: ('300')})
+    .from(['.deer-body-position', '.deer-head-position'], 0.5, { top: ('300')})
+    .from(['.border-line-width', '.orange-banner-position'], 0.5, { top: ('300')})
     // //////////
 
     // Deer moving Head animation.
@@ -78,7 +84,7 @@ function initAnimations(){
     // Deer moving Head and Body animation.
     // ///////////
     .addLabel('movingWith')
-    .to('.deer-body-position', 1, {top: ('126'), left: ('95'), rotation:('-4deg')}, 'movingWith')
+    .to('.deer-body-position', 1, {top: ('120'), left: ('95'), rotation:('-4deg')}, 'movingWith')
     .to('.deer-head-position', 1, {top: ('40'), left: ('74'), rotation: ('-21deg'),}, 'movingWith')
     // ///////////
 
@@ -147,8 +153,8 @@ function actionsButton(){
         TweenMax.to('.charact-appear-position', 1,{top: ('0')})
         TweenMax.to('.shine-back-position', 1,{top: ('0')})
     });
-    /*const looperBanner = function() {
+    const looperBanner = function() {
         location.reload();
     }
-    setTimeout(looperBanner, 5000);*/
+    setTimeout(looperBanner, 5000);
 }
