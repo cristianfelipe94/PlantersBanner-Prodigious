@@ -22,10 +22,12 @@ const _imageArray = new Array(
 const headGone = ['rect(0px, 90px, 110px, -90px)', 'rect(110px, 90px, 110px, -90px)'];
 const bodyGone = ['rect(0px, 129px, 240px, -129px)', 'rect(129px, 129px, 240px, -129px)'];
 
-const appearCharact = ['rect(0px, 142px, 0px, -142px)','rect(0px, 142px, 180px, -142px)'];
-const frontWrap = ['rect(0px, 114px, 0px, -114px)','rect(0px, 114px, 221px, -114px)'];
-const backWrap = ['rect(-30px, 114px, 0px, -114px)','rect(0px, 114px, 30px, -114px)'];
-const insideWrap = ['rect(-38px, 85px, 0px, -85px)','rect(0px, 85px, 38px, -85px)'];
+const appearCharact = ['rect(0px, 142px, 0px, -142px)', 'rect(0px, 142px, 180px, -142px)'];
+const frontWrap = ['rect(0px, 114px, 0px, -114px)', 'rect(0px, 114px, 221px, -114px)'];
+const backWrap = ['rect(-30px, 114px, 0px, -114px)', 'rect(0px, 114px, 30px, -114px)'];
+const insideWrap = ['rect(-38px, 85px, 0px, -85px)', 'rect(0px, 85px, 38px, -85px)'];
+
+const shinningTo = ['rect(180px, 234px, 0px, -234px)', 'rect(0px, 234px, 180px, -234px)'];
 
 this.addEventListener('DOMContentLoaded', preloadImages);
 
@@ -82,7 +84,7 @@ function initAnimations(){
 
     // Falling product animation
     // ///////////////
-    .addLabel('smashingTo')
+    .addLabel('smashingTo', '+=0.2')
     .from('.productbox-felt-position', 1,{
         ease: Bounce.easeOut,
         top: ('-1000'),
@@ -106,20 +108,23 @@ function initAnimations(){
 
     // Character jumping from product.
     // /////////////////
-    .addLabel('showingDeer')
-    .to('.charact-appear-position', 0.5, {clip: appearCharact[0]},'showingDeer')
+    .addLabel('showingDeer', '+=0.2')
+    .to('.charact-appear-position', 0.5, {clip: appearCharact[0]},'smashingTo')
     .to('.charact-appear-position', 0.5, {clip: appearCharact[1], opacity: ('1')},'showingDeer')
 
-    .to('.wrapper-front-position', 0.5, {clip: frontWrap[0]},'showingDeer')
+    .to('.wrapper-front-position', 0.5, {clip: frontWrap[0]},'smashingTo')
     .to('.wrapper-front-position', 0.5, {clip: frontWrap[1], opacity: ('1')},'showingDeer')
 
-    .to('.wrapper-back-position', 0.5, {clip: backWrap[0]},'showingDeer')
+    .to('.wrapper-back-position', 0.5, {clip: backWrap[0]},'smashingTo')
     .to('.wrapper-back-position', 0.5, {clip: backWrap[1], opacity: ('1')},'showingDeer')
 
-    .to('.wrapper-background-position', 0.5, {clip: insideWrap[0]},'showingDeer')
+    .to('.wrapper-background-position', 0.5, {clip: insideWrap[0]},'smashingTo')
+    .to('.shine-back-position', 0.2, {clip: shinningTo[0]},'smashingTo')
     .to('.wrapper-background-position', 0.5, {clip: insideWrap[1], opacity: ('1')},'showingDeer')
 
-    .from('.charact-appear-position', 0.5, {ease: Back.easeOut.config(1), top: ('200')},'showingDeer')
+    .from('.charact-appear-position', 0.8, {ease: Back.easeOut.config(1), top: ('200')},'showingDeer')
+    
+    .to('.shine-back-position', 0.5, {clip: shinningTo[1], opacity: ('1')}, 'showingDeer')
     // /////////////////
 
     // Catchphrase appear animation.
@@ -128,25 +133,19 @@ function initAnimations(){
     .from('.catchphrase-shade-position', 0.5, {opacity: ('0')}, 'smashingTo')
     // ///////////
 
-    .from('.final-productshot-position', 0.5, {left: ('350')})
+    .from('.final-productshot-position', 0.5, {left: ('350'), onComplete: actionsButton})
 }
 
 function actionsButton(){
     _btnExit.addEventListener('mouseover', () => {
-        TweenMax.to('.blue-cta-opacity', 1,{ease: Power1.easeOut, left: ('205'), opacity: ('0')})
-        TweenMax.to('.yellow-cta-opacity', 1,{ease: Power1.easeOut, left: ('205'), opacity: ('1')})
-        TweenMax.to('.blue-block-position', 1,{ease: Power1.easeOut, bottom: ('-103')})
-        TweenMax.to('.first-text-opacity', 0.2,{ease: Power1.easeOut, opacity: ('0')})
-        TweenMax.to('.second-text-opacity', 0.2,{ease: Power1.easeOut, opacity: ('0')})
-        TweenMax.to('.third-text-magicappear', 0.2,{ease: Power1.easeOut, opacity: ('0')})
+        TweenMax.to(_btnExit, 1,{zIndex: ('100')})
+        TweenMax.to('.charact-appear-position', 1,{top: ('-5')})
+        TweenMax.to('.shine-back-position', 1,{top: ('-20')})
     });
     _btnExit.addEventListener('mouseout', () => {
-        TweenMax.to('.blue-cta-opacity', 1,{ease: Power1.easeOut, left: ('140'), opacity: ('1')})
-        TweenMax.to('.yellow-cta-opacity', 1,{ease: Power1.easeOut, left: ('140'), opacity: ('0')})
-        TweenMax.to('.blue-block-position', 1,{ease: Back.easeOut.config(1), bottom: ('-5')})
-        TweenMax.to('.first-text-opacity', 1.2,{ease: Power1.easeOut, opacity: ('1')})
-        TweenMax.to('.second-text-opacity', 1.2,{ease: Power1.easeOut, opacity: ('1')})
-        TweenMax.to('.third-text-magicappear', 1.2,{ease: Power1.easeOut, opacity: ('1')})
+        TweenMax.to(_btnExit, 1,{zIndex: ('100')})
+        TweenMax.to('.charact-appear-position', 1,{top: ('0')})
+        TweenMax.to('.shine-back-position', 1,{top: ('0')})
     });
     /*const looperBanner = function() {
         location.reload();
