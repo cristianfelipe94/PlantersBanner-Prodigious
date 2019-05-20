@@ -91,6 +91,7 @@ function initAnimations(){
     // Falling product animation
     // ///////////////
     .addLabel('smashingTo', '+=0.2')
+    .addLabel('shadowFalling')
     .from('.productbox-felt-position', 1,{
         ease: Bounce.easeOut,
         top: ('-1000'),
@@ -101,7 +102,8 @@ function initAnimations(){
         left: ('15'),
         rotation: ('4'),
         zIndex: ('4')      
-    })
+    },'shadowFalling')
+    .from('.product-shadow-blur', 0.5, {ease: Bounce.easeOut, top: ('-200'), opacity: ('0')}, 'shadowFalling')
     // ///////////////
 
     // Smashing Head and Body animation.

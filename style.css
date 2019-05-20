@@ -269,6 +269,19 @@
   z-index: 6;
 }
 
+.product-shadow-blur {
+  background: url('productShadow.png');
+  height: 112px;
+  width: 242px;
+  top: 133px;
+  left: -13px;
+  position: absolute;
+  filter: blur(3px);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+
 .catchphrase-text-position {
   background: url('fixedcatchphrase.png');
   height: 130px;
