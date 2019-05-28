@@ -1,13 +1,79 @@
 
 let _loadedImages = 0;
 const _imageArray = new Array(
-    'x.png',
+    // Backgrounds
+    // ///////////
+    'background1.png',
+    'background2.png',
+    'bottomBluBanner.png',
+    // ///////////
+
+    // Character
+    // /////////
+    'armLess.png',
+    'eyeBrows.png',
+    'eyesClosed.png',
+    'eyesCloseMrP.png',
+    'leftEyeBrow.png',
+    'rightEyeBrow.png',
+    // /////////
+
+    // Eyebrows
+    // ////////
+    'callAction.png',
+    'catchPhrase1.png',
+    'catchPhrase2.png',
+    'catchPhrase3.png',
+    'finalShadowProductShot.png',
+    'food1.png',
+    'productShotFinal.png',
+    // ////////
+
+    // Bowls
+    // /////
+    'fullBowl.png',
+    'halfFullBowl.png',
+    'leftBowlSmall.png',
+    'emptyBigBowl.png',
+    'bowlsShadow.png',
+    // /////
+
+    // Arms
+    // ////
+    'leftHand.png',
+    'leftHandEmptyBowl.png',
+    'leftHandFullBowl.png',
+    'leftFullBowl.png',
+
+    'rightHand.png',
+    'rightHandEmptyBowl.png',
+    'rightHandWithFullBowl.png',
+    'rightFullBowl.png',
+    // ////
+
+    // Seeds
+    // /////
+    'leftSeed1.png',
+    'leftSeed2.png',
+    'leftSeed5.png',
+    'leftSeed6.png',
+    'leftSeed7.png',
+    'leftSeed8.png',
+
+    'rightSeed1.png',
+    'rightSeed2.png',
+    'rightSeed3.png',
+    'rightSeed4.png',
+    'rightSeed5.png',
+    'rightSeed6.png',
+    // /////
 );
 
 // Rect Values (0px: Top Value, 0px: Right Value, 0px: Bottom Value, 0px: Left Value).
 // Arrays with starting values and ending values for transitions.
 const x = ['rect(0px, 0px, 0px, 0px)', 'rect(0px, 0px, 0px, 0px)'];
 
+const fillingBowl = ['rect(80px, 178px, 0px, -178px)', 'rect(0px, 178px, 500px, -178px)'];
 
 this.addEventListener('DOMContentLoaded', preloadImages);
 
@@ -38,103 +104,136 @@ function initAnimations(){
     _tlShowing
     .set('.banner',{display: 'block'})
 
-    // Title and show animation in and out.
-    // /////////
-    .from(['.main-title-position','.main-title-shade-position'], 1,{ top: ('-500')})
-    .addLabel('bezierMovement')
-    .to('.main-title-position', 2, {bezier:{curviness:2, values:[{x:('-5'), y:('-2')}, {x:('-5'), y:('10')}, {x:('0'), y:('-10')}, {x:('5'), y:('5')}]}, ease:Power1.easeInOut, yoyo: true, repeat: 1}, 'bezierMovement')
-    .to('.main-title-shade-position', 2, {bezier:{curviness:2, values:[{x:('5'), y:('2')}, {x:('5'), y:('-10')}, {x:('0'), y:('10')}, {x:('-5'), y:('-5')}]}, ease:Power1.easeInOut, yoyo: true, repeat: 1}, 'bezierMovement')
-    .to(['.main-title-position','.main-title-shade-position', '.juice-shadow-position', '.juice-details-position'], 2,{ top: ('-150'), opacity: ('0')})
-    // /////////
-
-    // Border and Deer animation in.
-    // //////////
-    .from(['.deer-body-position', '.deer-head-position'], 0.5, { top: ('300')})
-    .from(['.border-line-width', '.orange-banner-position'], 0.5, { top: ('300')})
-    // //////////
-
-    // Deer moving Head animation.
-    // ///////////
-    .to('.deer-head-position', 1, {top: ('40'), left: ('76'), rotation: ('-21deg')}).delay(0.5)
-    .to('.deer-head-position', 1, {top: ('38'), left: ('92'), rotation: ('1deg'),}).delay(0.5)
-    // ///////////
-
-    // Deer moving Head and Body animation.
-    // ///////////
-    .addLabel('movingWith')
-    .to('.deer-body-position', 1, {top: ('120'), left: ('95'), rotation:('-4deg')}, 'movingWith')
-    .to('.deer-head-position', 1, {top: ('40'), left: ('74'), rotation: ('-21deg'),}, 'movingWith')
-    // ///////////
-
-    // Falling product animation
-    // ///////////////
-    .addLabel('smashingTo', '+=0.2')
-    .addLabel('shadowFalling')
-    .from('.productbox-felt-position', 1,{
-        ease: Bounce.easeOut,
-        top: ('-1000'),
-        height: ('160'),
-        width: ('209'),
-        top: ('-195'),
-        bottom: ('0'),
-        left: ('15'),
-        rotation: ('4'),
-        zIndex: ('4')      
-    },'shadowFalling')
-    .from('.product-shadow-blur', 0.5, {ease: Bounce.easeOut, top: ('-200'), opacity: ('0')}, 'shadowFalling')
-    // ///////////////
-
-    // Smashing Head and Body animation.
+    // Moving hands.
     // /////////////
-    .set('.deer-head-position', {clip: headGone[0]}, 'smashingTo')
-    .to('.deer-head-position', 0.1, {clip: headGone[1], opacity: ('0')}, 'smashingTo')
-    .set('.deer-body-position', {clip: bodyGone[0]}, 'smashingTo')
-    .to('.deer-body-position', 0.1, {clip: bodyGone[1], opacity: ('0')}, 'smashingTo')
+    .addLabel('jugglingDown')
+    .to('.left-hand-position', 1,{rotationZ: ('-12deg'), top: ('90')}, 'jugglingDown')
+    .to('.right-hand-position', 1,{rotationZ: ('12deg'), top: ('80')}, 'jugglingDown')
+
+    .addLabel('jugglingUp')
+    .to('.right-hand-position', 1,{rotationZ: ('-12deg'), top: ('70')}, 'jugglingUp')
+    .to('.left-hand-position', 1,{rotationZ: ('12deg'), top: ('80')}, 'jugglingUp')
+
+    .addLabel('jugglingDownRepeat')
+    .to('.left-hand-position', 0.5,{rotationZ: ('-12deg'), top: ('90')}, 'jugglingDownRepeat')
+    .to('.right-hand-position', 0.5,{rotationZ: ('12deg'), top: ('80')}, 'jugglingDownRepeat')
+
+    .addLabel('jugglingUpRepeat')
+    .to('.right-hand-position', 0.5,{rotationZ: ('-12deg'), top: ('70')}, 'jugglingUpRepeat')
+    .to('.left-hand-position', 0.5,{rotationZ: ('12deg'), top: ('80')}, 'jugglingUpRepeat')
     // /////////////
 
-    // Character jumping from product.
-    // /////////////////
-    .addLabel('showingDeer', '+=0.2')
-    .to('.charact-appear-position', 0.5, {clip: appearCharact[0]},'smashingTo')
-    .to('.charact-appear-position', 0.5, {clip: appearCharact[1], opacity: ('1')},'showingDeer')
-
-    .to('.wrapper-front-position', 0.5, {clip: frontWrap[0]},'smashingTo')
-    .to('.wrapper-front-position', 0.5, {clip: frontWrap[1], opacity: ('1')},'showingDeer')
-
-    .to('.wrapper-back-position', 0.5, {clip: backWrap[0]},'smashingTo')
-    .to('.wrapper-back-position', 0.5, {clip: backWrap[1], opacity: ('1')},'showingDeer')
-
-    .to('.wrapper-background-position', 0.5, {clip: insideWrap[0]},'smashingTo')
-    .to('.shine-back-position', 0.2, {clip: shinningTo[0]},'smashingTo')
-    .to('.wrapper-background-position', 0.5, {clip: insideWrap[1], opacity: ('1')},'showingDeer')
-
-    .from('.charact-appear-position', 0.8, {ease: Back.easeOut.config(1), top: ('200')},'showingDeer')
+    // Closing Eyes.
+    // /////////////
+    .to('.character-normal-position', 0.7,{opacity: ('0')}, 'jugglingDown')
+    .to('.character-closed-position', 0.1,{opacity: ('1')}, 'jugglingDown')
     
-    .to('.shine-back-position', 0.5, {clip: shinningTo[1], opacity: ('1')}, 'showingDeer')
-    // /////////////////
+    .to('.character-normal-position', 0.1,{opacity: ('1')}, 'jugglingUp')
+    .to('.character-closed-position', 0.7,{opacity: ('0')}, 'jugglingUp')
 
-    // Catchphrase appear animation.
-    // ///////////
-    .from('.catchphrase-text-position', 0.5, {opacity: ('0')}, 'smashingTo')
-    .from('.catchphrase-shade-position', 0.5, {opacity: ('0')}, 'smashingTo')
-    // ///////////
+    .to('.character-closed-position', 0.1,{opacity: ('1')}, 'jugglingDownRepeat')
+    .to('.character-normal-position', 0.7,{opacity: ('0')}, 'jugglingDownRepeat')
 
-    .from('.final-productshot-position', 0.5, {left: ('350'), onComplete: actionsButton})
+    .to('.character-closed-position', 0.7,{opacity: ('0')}, 'jugglingUpRepeat')
+    .to('.character-normal-position', 0.1,{opacity: ('1')}, 'jugglingUpRepeat')
+    // /////////////
+
+    .addLabel('appearFood', '-=0.9')
+    .to([
+        '.peanut-1-position','.peanut-2-position','.peanut-3-position',
+        '.peanut-4-position','.peanut-5-position','.peanut-6-position',
+        '.peanut-7-position','.peanut-8-position','.peanut-9-position',
+        '.peanut-10-position','.peanut-11-position'], 0.1, {zIndex: ('1')},'appearFood'
+    )
+
+    // Throwing food Left-hand.
+    // ////////////
+    .addLabel('throwingFood', '-=0.8')
+    .to('.peanut-1-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('10'),y:('-10')},{x:('30'),y:('10')},{x:('40'),y:('50')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-2-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('25'),y:('-30')},{x:('60'),y:('20')},{x:('75'),y:('70')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-3-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('30'),y:('-20')},{x:('80'),y:('20')},{x:('100'),y:('60')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-4-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('10'),y:('-25')},{x:('60'),y:('40')},{x:('60'),y:('50')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-5-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('10'),y:('-40')},{x:('70'),y:('40')},{x:('80'),y:('50')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    // ////////////
+
+    // Throwing food Right-hand.
+    // ////////////
+    .to('.peanut-6-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('-20'),y:('-10')},{x:('-30'),y:('10')},{x:('-60'),y:('65')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-7-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('-30'),y:('-20')},{x:('-40'),y:('10')},{x:('-50'),y:('65')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-8-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('-40'),y:('-30')},{x:('-100'),y:('10')},{x:('-110'),y:('60')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-9-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('-40'),y:('-40')},{x:('-60'),y:('10')},{x:('-70'),y:('60')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-10-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('-20'),y:('-20')},{x:('-70'),y:('10')},{x:('-80'),y:('50')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    .to('.peanut-11-position', 1.5, {bezier: {curviness: 5, type: 'soft' ,values: [{x:('-30'),y:('-20')},{x:('-90'),y:('40')},{x:('-80'),y:('50')}]}, ease:Power1.easeInOut, zIndex: ('1')},'throwingFood')
+    // ////////////
+
+    // Empty Bowls.
+    // ////////////
+    .addLabel('thowingBowls', '-=1.2')
+    .to('.left-hand-position', 0.2,{opacity: ('0')}, 'thowingBowls')
+    .to('.right-hand-position', 0.2,{opacity: ('0')}, 'thowingBowls')
+
+    .to('.left-bowl-position', 0.1,{opacity: ('1')}, 'thowingBowls')
+    .to('.right-bowl-position', 0.1,{opacity: ('1')}, 'thowingBowls')
+    // ////////////
+
+    .to('.bowl-full-position', 0.1, {clip: fillingBowl[0], zIndex: ('2')}, 'thowingBowls')
+    .to('.bowl-full-position', 1, {clip: fillingBowl[1], zIndex: ('2')})
+
+    // Character goes away.
+    // //////////////
+    .addLabel('goodBye')
+    .to('.character-normal-position', 0.7,{opacity: ('0')},'goodBye')
+    .to('.character-closed-position', 0.1,{opacity: ('1')},'goodBye')
+    
+    .to('.character-normal-position', 0.1,{opacity: ('1')})
+    .to('.character-closed-position', 0.7,{opacity: ('0')})
+    .to('.catchPhrase-first-position', 0.1,{opacity: ('0')}, '-=0.5')
+    .to('.catchPhrase-second-position', 1,{opacity: ('1'), ease:Power1.easeInOut}, '-=0.5')
+
+    .addLabel('cleanFirstScene')
+    .to([
+        '.bigBowl-empty-position','.left-hand-position','.right-hand-position',
+        '.character-normal-position','.character-closed-position','.peanut-1-position',
+        '.peanut-2-position','.peanut-3-position','.peanut-4-position',
+        '.peanut-5-position','.peanut-6-position','.peanut-7-position',
+        '.peanut-8-position','.peanut-9-position','.peanut-10-position',
+        '.peanut-11-position','.left-bowl-position','.right-bowl-position',
+        '.bowl-full-position'], 0.8, {opacity: ('0')}, 'cleanFirstScene'
+    )
+    // //////////////
+
+    // Second scene, product shot.
+    // /////////////
+    .to('.zoomIn-product-position', 2, {opacity: ('1')},'cleanFirstScene')
+    .to('.catchPhrase-second-position', 0.5,{opacity: ('0')})
+    .to('.catchPhrase-third-position', 1,{opacity: ('1')})
+
+    .addLabel('zoomMovement')
+    .to('.zoomIn-product-position', 1, {top: ('-19'), left: ('25'), zIndex: (2), scale: ('0.2'), opacity: ('1'), borderRadius: ('100% 100%')},'zoomMovement')
+    .to('.zoomOut-product-position', 1, {zIndex: (1), scale: ('1'), opacity: ('1')},'zoomMovement')
+
+    .to('.background-shadow-position', 1, {opacity: ('1')})
+    .from('.call-action-position', 1, {left: ('-250'), ease: Power3.easeOut, onComplete: actionsButton})
+    // /////////////
 }
 
 function actionsButton(){
     _btnExit.addEventListener('mouseover', () => {
-        TweenMax.to(_btnExit, 1,{zIndex: ('100')})
-        TweenMax.to('.charact-appear-position', 1,{top: ('-5')})
-        TweenMax.to('.shine-back-position', 1,{top: ('-20')})
+        TweenMax.to(_btnExit, 0.1,{zIndex: ('100')})
+        TweenMax.to('.background-shadow-position', 0.8,{top: ('-2')})
+        TweenMax.to('.zoomOut-product-position', 0.8,{top: ('-10')})
+        TweenMax.to('.zoomIn-product-position', 0.8,{top: ('-28')})
     });
     _btnExit.addEventListener('mouseout', () => {
-        TweenMax.to(_btnExit, 1,{zIndex: ('100')})
-        TweenMax.to('.charact-appear-position', 1,{top: ('0')})
-        TweenMax.to('.shine-back-position', 1,{top: ('0')})
+        TweenMax.to(_btnExit, 0.1,{zIndex: ('100')})
+        TweenMax.to('.background-shadow-position', 1,{top: ('-4')})
+        TweenMax.to('.zoomOut-product-position', 1,{top: ('0')})
+        TweenMax.to('.zoomIn-product-position', 1,{top: ('-19')})
     });
+    /*
     const looperBanner = function() {
         location.reload();
     }
-    setTimeout(looperBanner, 5000);
+    setTimeout(looperBanner, 15000);
+    */
 }
