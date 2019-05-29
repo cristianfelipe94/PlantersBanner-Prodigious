@@ -224,5 +224,5 @@ function actionsButton(){
     const looperBanner = function() {
         location.reload();
     }
-    setTimeout(looperBanner, 14000);
+    setTimeout(looperBanner, 15000);
 }
