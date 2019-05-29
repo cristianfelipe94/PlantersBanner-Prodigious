@@ -1,0 +1,335 @@
+@charset "UTF-8";
+.banner {
+  background-color: black;
+  overflow: hidden;
+  display: none;
+  position: relative;
+}
+
+#btnExit {
+  cursor: pointer;
+  opacity: 0
+}
+
+.bannerSize {
+  width: 300px;
+  height: 250px;
+  position: relative;
+}
+
+.bannerSize img {
+  border: none;
+}
+
+.hide {
+  opacity:0;
+}
+
+.retina{
+  background-size:cover !important;
+}
+
+.aC{
+  right:0;
+  left:0;
+  margin:0 auto;
+}
+
+* {
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+
+/*Loading images into elements*/
+.background-pink-position {
+  background: url('background2.png');
+  height: 250px;
+  width: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.background-shadow-position {
+  background: url('background1.png');
+  height: 190px;
+  width: 300px;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  transform: rotateY(180deg);
+  opacity: 0;
+}
+
+.call-action-position {
+  background: url('callAction.png');
+  height: 10px;
+  width: 68px;
+  position: absolute;
+  top: 160px;
+  left: 229px;
+}
+
+.banner-blue-position {
+  background: url('bottomBluBanner.png');
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 167px;
+  z-index: 2;
+}
+
+.catchPhrase-first-position {
+  background: url('catchPhrase2.png');
+  width: 168px;
+  height: 38px;
+  position: absolute;
+  top: 200px;
+  left: 31px;
+  z-index: 2;
+}
+
+.catchPhrase-second-position {
+  background: url('catchPhrase1.png');
+  width: 200px;
+  height: 15px;
+  position: absolute;
+  top: 212px;
+  left: 15px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.catchPhrase-third-position {
+  background: url('catchPhrase3.png');
+  width: 190px;
+  height: 34px;
+  position: absolute;
+  top: 201px;
+  left: 24px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.character-normal-position {
+  background: url('armLess.png');
+  width: 84px;
+  height: 300px;
+  position: absolute;
+  top: -3px;
+  left: 112px;
+  z-index: 1;
+  opacity: 1;
+}
+
+.character-closed-position {
+  background: url('eyesCloseMrP.png');
+  width: 136px;
+  height: 300px;
+  position: absolute;
+  top: -3px;
+  left: 60px;
+  z-index: 1;
+  opacity: 0; 
+}
+
+.right-hand-position {
+  background: url('rightHandWithFullBowl.png');
+  width: 90px;
+  height: 78px;
+  position: absolute;
+  top: 76px;
+  left: 171px;
+  z-index: 0;
+}
+
+.left-hand-position {
+  background: url('leftHandFullBowl.png');
+  width: 62px;
+  height: 50px;
+  position: absolute;
+  top: 86px;
+  left: 59px;
+  z-index: 0;
+}
+
+.left-bowl-position {
+  background: url('leftHandEmptyBowl.png');
+  width: 62px;
+  height: 50px;
+  position: absolute;
+  top: 80px;
+  left: 58px;
+  z-index: 0;
+  transform: rotate(11deg);
+  opacity: 0;
+}
+
+.right-bowl-position {
+  background: url('rightHandEmptyBowl.png');
+  width: 90px;
+  height: 78px;
+  position: absolute;
+  top: 82px;
+  left: 176px;
+  z-index: 0;
+  transform: rotate(-12deg);
+  opacity: 0;
+}
+
+.bigBowl-empty-position {
+  background: url('emptyBigBowl.png');
+  width: 172px;
+  height: 40px;
+  position: absolute;
+  top: 141px;
+  left: 70px;
+  z-index: 1;
+}
+
+/*Left hand Throwing elements*/
+.peanut-1-position {
+  background: url('leftSeed6.png');
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 101px;
+  left: 82px;
+  z-index: -1;
+}
+
+.peanut-2-position {
+  background: url('leftSeed5.png');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 86px;
+  left: 74px;
+  z-index: -1;
+}
+
+.peanut-3-position {
+  background: url('leftSeed8.png');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 88px;
+  left: 70px;
+  z-index: -1;
+}
+
+.peanut-4-position {
+  background: url('leftSeed1.png');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 101px;
+  left: 73px;
+  z-index: -1;
+}
+
+.peanut-5-position {
+  background: url('leftSeed2.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 92px;
+  left: 71px;
+  z-index: -1;
+}
+
+/*Right hand Throwing elements*/
+.peanut-6-position {
+  background: url('rightSeed4.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 84px;
+  left: 230px;
+  z-index: -1;
+}
+
+.peanut-7-position {
+  background: url('rightSeed1.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 100px;
+  left: 226px;
+  z-index: -1;
+}
+
+.peanut-8-position {
+  background: url('rightSeed6.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 93px;
+  left: 219px;
+  z-index: -1;
+}
+
+.peanut-9-position {
+  background: url('rightSeed2.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 97px;
+  left: 216px;
+  z-index: -1;
+}
+
+.peanut-10-position {
+  background: url('rightSeed3.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 90px;
+  left: 219px;
+  z-index: -1;
+}
+
+.peanut-11-position {
+  background: url('rightSeed4.png');
+  width: 20px;
+  height: 15px;
+  position: absolute;
+  top: 96px;
+  left: 211px;
+  z-index: -1;
+}
+
+.bowl-full-position {
+  background: url('fullBowl.png');
+  width: 178px;
+  height: 80px;
+  position: absolute;
+  top: 103px;
+  left: 67px;
+  z-index: -1;
+}
+
+.zoomIn-product-position {
+  background: url('food1.png');
+  width: 300px;
+  height: 270px;
+  position: absolute;
+  top: -4px;
+  left: 1px;
+  z-index: 1;
+  opacity: 0;
+}
+
+.zoomOut-product-position {
+  background: url('productShotFinal.png');
+  width: 300px;
+  height: 160px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+  opacity: 0;
+  transform: scale(4.5);
+}
+
