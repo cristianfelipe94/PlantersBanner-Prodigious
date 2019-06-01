@@ -168,7 +168,7 @@ function initAnimations(){
     // ////////////
 
     .to('.bowl-full-position', 0.1, {clip: fillingBowl[0], zIndex: ('2')}, 'thowingBowls')
-    .to('.bowl-full-position', 1, {clip: fillingBowl[1], zIndex: ('2')})
+    .to('.bowl-full-position', 0.5, {clip: fillingBowl[1], zIndex: ('2')}, '-=' + 1)
 
     // Character goes away.
     // //////////////
@@ -209,14 +209,13 @@ function initAnimations(){
 }
 
 function actionsButton(){
+    TweenMax.to(_btnExit, 0.1,{zIndex: ('100')})
     _btnExit.addEventListener('mouseover', () => {
-        TweenMax.to(_btnExit, 0.1,{zIndex: ('100')})
         TweenMax.to('.background-shadow-position', 0.8,{top: ('-2')})
         TweenMax.to('.zoomOut-product-position', 0.8,{top: ('-10')})
         TweenMax.to('.zoomIn-product-position', 0.8,{top: ('-28')})
     });
     _btnExit.addEventListener('mouseout', () => {
-        TweenMax.to(_btnExit, 0.1,{zIndex: ('100')})
         TweenMax.to('.background-shadow-position', 1,{top: ('-4')})
         TweenMax.to('.zoomOut-product-position', 1,{top: ('0')})
         TweenMax.to('.zoomIn-product-position', 1,{top: ('-19')})
